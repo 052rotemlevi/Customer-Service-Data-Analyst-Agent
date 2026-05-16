@@ -30,8 +30,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Swap to Lambda requirements
+        run: |
+          cp requirements.txt requirements-full.txt
+          cp requirements-lambda.txt requirements.txt
+
       - name: SAM Build
-        run: sam build --template-file template.yaml
+        run: sam build --template-file template.yaml --use-container
+
+      - name: Restore full requirements
+        run: cp requirements-full.txt requirements.txt
 
       - name: SAM Deploy
         run: |

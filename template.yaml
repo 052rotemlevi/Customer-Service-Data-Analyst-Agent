@@ -87,6 +87,8 @@ Resources:
   # ──── Lambda Function ────
   AgentFunction:
     Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: python3.11
     Properties:
       FunctionName: !Sub "${AWS::StackName}-agent"
       CodeUri: .
