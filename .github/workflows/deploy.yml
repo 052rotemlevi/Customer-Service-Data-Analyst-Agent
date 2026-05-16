@@ -86,6 +86,14 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Inject secrets into frontend
+        run: |
+          sed -i 's|__AUTHOR1_NAME__|${{ secrets.AUTHOR1_NAME }}|g' frontend/index.html
+          sed -i 's|__AUTHOR1_LINKEDIN__|${{ secrets.AUTHOR1_LINKEDIN }}|g' frontend/index.html
+          sed -i 's|__AUTHOR2_NAME__|${{ secrets.AUTHOR2_NAME }}|g' frontend/index.html
+          sed -i 's|__AUTHOR2_LINKEDIN__|${{ secrets.AUTHOR2_LINKEDIN }}|g' frontend/index.html
+          sed -i 's|__GITHUB_REPO__|${{ secrets.REPO_URL }}|g' frontend/index.html
+
       - name: Upload frontend to S3
         run: |
           aws s3 sync frontend/ s3://${{ needs.deploy-backend.outputs.bucket }}/ \

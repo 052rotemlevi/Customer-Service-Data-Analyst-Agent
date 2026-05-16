@@ -3,521 +3,521 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Service Data Analyst Agent</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>CS Data Analyst</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0c0d10;
+            --surface: #16181d;
+            --raised: #1e2028;
+            --border: #27292f;
+            --border-dim: #1f222b;
+            --text: #cdced6;
+            --text-dim: #71737a;
+            --text-faint: #50525a;
+            --accent: #0d9488;
+            --accent-lit: #2dd4bf;
+            --accent-bg: rgba(13,148,136,.1);
+            --green: #22c55e;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0a0e1a;
-            color: #e2e8f0;
+            font-family: 'DM Sans', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             height: 100vh;
             display: flex;
+            overflow: hidden;
         }
-        /* Sidebar */
+
+        /* ── SIDEBAR ─────────────────────────── */
         .sidebar {
-            width: 300px;
-            background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
-            border-right: 1px solid rgba(99, 102, 241, 0.15);
-            padding: 28px 24px;
+            width: 268px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            flex-shrink: 0;
         }
-        .sidebar-brand {
+
+        .sidebar-top {
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             gap: 10px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.15);
         }
-        .sidebar-brand .logo {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
-        .sidebar-brand span {
-            font-size: 15px;
-            font-weight: 600;
-            background: linear-gradient(135deg, #a5b4fc, #c4b5fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .sidebar h2 {
-            color: #818cf8;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .sidebar label {
+
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            border-radius: 6px;
+            display: grid;
+            place-items: center;
             font-size: 12px;
-            color: #94a3b8;
-            margin-bottom: 6px;
-            display: block;
-            font-weight: 500;
+            font-weight: 600;
+            color: #fff;
         }
-        .sidebar input {
-            width: 100%;
-            padding: 10px 14px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 8px;
-            color: #e2e8f0;
-            font-size: 13px;
-            font-family: inherit;
-            margin-bottom: 12px;
-            transition: all 0.2s;
+
+        .sidebar-top span {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -.2px;
         }
-        .sidebar input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
-        .profile-btn {
-            padding: 11px 16px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 10px;
-            color: #a5b4fc;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            font-family: inherit;
-            transition: all 0.2s;
+
+        .sidebar-body {
+            padding: 18px 20px;
             display: flex;
-            align-items: center;
-            gap: 8px;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
         }
-        .profile-btn:hover { background: rgba(99, 102, 241, 0.2); border-color: #6366f1; transform: translateY(-1px); }
+
+        .field label {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            margin-bottom: 5px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 7px 10px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--text);
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .field input:focus { outline: none; border-color: var(--accent); }
+
+        .btn-outline {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--text-dim);
+            font: inherit;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: left;
+            transition: .15s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent-lit);
+            background: var(--accent-bg);
+        }
+
         .sidebar-info {
             margin-top: auto;
             font-size: 12px;
-            color: #64748b;
-            line-height: 1.7;
-            padding: 16px;
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 10px;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            color: var(--text-faint);
+            line-height: 1.65;
         }
-        .sidebar-info strong { color: #a5b4fc; font-weight: 500; }
+
+        .sidebar-info b { color: var(--text-dim); font-weight: 500; }
+
         .sidebar-footer {
-            padding-top: 16px;
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
+            padding: 14px 20px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-faint);
+            line-height: 1.75;
             text-align: center;
         }
-        .sidebar-footer .credits {
-            font-size: 11px;
-            color: #64748b;
-            line-height: 1.8;
-        }
-        .sidebar-footer .credits strong {
-            color: #94a3b8;
-            font-weight: 500;
-        }
-        .sidebar-footer .links {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .sidebar-footer .links a {
-            font-size: 11px;
-            color: #818cf8;
+
+        .sidebar-footer a {
+            color: var(--text-dim);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color .15s;
         }
-        .sidebar-footer .links a:hover { color: #a5b4fc; text-decoration: underline; }
-        /* Main area */
+
+        .sidebar-footer a:hover { color: var(--accent-lit); text-decoration: underline; }
+
+        .sidebar-footer .sep { margin: 0 2px; }
+
+        .sidebar-footer .repo-link {
+            display: block;
+            margin-top: 4px;
+            font-size: 11px;
+            color: var(--text-faint);
+        }
+
+        .sidebar-footer .repo-link:hover { color: var(--accent-lit); }
+
+        /* ── MAIN ────────────────────────────── */
         .main {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.03) 0%, transparent 60%);
+            min-width: 0;
         }
-        .header {
-            padding: 18px 28px;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+
+        .toolbar {
+            padding: 12px 24px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
-            gap: 14px;
-            background: rgba(17, 24, 39, 0.5);
-            backdrop-filter: blur(10px);
+            gap: 10px;
+            background: var(--surface);
         }
-        .header .icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-        .header h1 { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
-        .header .badge {
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .header .badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-        /* Messages */
+
+        .online-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; }
+
+        .toolbar h2 { font-size: 14px; font-weight: 500; }
+
+        .toolbar .tag { margin-left: auto; font-size: 11px; color: var(--text-faint); }
+
+        /* ── MESSAGES ────────────────────────── */
         .messages {
             flex: 1;
             overflow-y: auto;
-            padding: 28px;
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            scroll-behavior: smooth;
+            gap: 10px;
         }
-        .messages::-webkit-scrollbar { width: 6px; }
+
+        .messages::-webkit-scrollbar { width: 4px; }
         .messages::-webkit-scrollbar-track { background: transparent; }
-        .messages::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.3); border-radius: 3px; }
-        .message {
-            max-width: 72%;
-            padding: 14px 18px;
-            border-radius: 16px;
-            line-height: 1.7;
+        .messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        .msg {
+            max-width: 640px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            line-height: 1.6;
             font-size: 14px;
             white-space: pre-wrap;
-            animation: fadeIn 0.3s ease;
+            word-break: break-word;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .message.user {
+
+        .msg.user {
             align-self: flex-end;
-            background: linear-gradient(135deg, #4f46e5, #6366f1);
-            color: #fff;
-            border-bottom-right-radius: 4px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+            background: #0f766e;
+            color: #d5f5f2;
+            border-bottom-right-radius: 2px;
         }
-        .message.assistant {
+
+        .msg.bot {
             align-self: flex-start;
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.12);
-            border-bottom-left-radius: 4px;
-            backdrop-filter: blur(4px);
+            background: var(--raised);
+            border: 1px solid var(--border);
+            border-bottom-left-radius: 2px;
         }
-        .message .reasoning {
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px solid rgba(99, 102, 241, 0.15);
-            font-size: 12px;
-            color: #94a3b8;
-        }
+
+        /* Reasoning */
         .reasoning-toggle {
             cursor: pointer;
-            color: #818cf8;
+            color: var(--accent-lit);
             font-size: 12px;
-            margin-top: 10px;
+            margin-top: 8px;
             user-select: none;
             font-weight: 500;
-            transition: color 0.2s;
         }
-        .reasoning-toggle:hover { color: #a5b4fc; }
-        .reasoning-content { display: none; margin-top: 8px; }
+
+        .reasoning-toggle:hover { text-decoration: underline; }
+        .reasoning-content { display: none; margin-top: 6px; }
         .reasoning-content.open { display: block; }
+
         .step {
-            margin: 4px 0;
-            padding: 6px 10px;
-            background: rgba(15, 23, 42, 0.8);
-            border-radius: 6px;
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            margin: 3px 0;
+            padding: 4px 8px;
+            background: var(--bg);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
-            border-left: 3px solid transparent;
+            border-left: 2px solid transparent;
         }
-        .step.tool { color: #22d3ee; border-left-color: #22d3ee; }
-        .step.result { color: #fbbf24; border-left-color: #fbbf24; }
-        .step.route { color: #c084fc; border-left-color: #c084fc; }
-        /* Typing indicator */
+
+        .step.tool   { color: #22d3ee; border-color: #22d3ee; }
+        .step.result  { color: #facc15; border-color: #facc15; }
+        .step.route   { color: #a78bfa; border-color: #a78bfa; }
+
+        /* Typing */
         .typing {
             align-self: flex-start;
-            padding: 14px 18px;
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.12);
-            border-radius: 16px;
+            padding: 10px 14px;
+            background: var(--raised);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             display: none;
+            align-items: center;
+            gap: 4px;
         }
-        .typing.visible { display: flex; gap: 5px; align-items: center; }
-        .typing span { font-size: 13px; color: #94a3b8; margin-left: 4px; }
-        .dot { width: 7px; height: 7px; background: #6366f1; border-radius: 50%; animation: bounce 1.4s infinite; }
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes bounce {
-            0%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-8px); }
+
+        .typing.visible { display: flex; }
+
+        .typing .d {
+            width: 5px;
+            height: 5px;
+            background: var(--text-faint);
+            border-radius: 50%;
+            animation: blink 1.2s infinite;
         }
-        /* Input */
-        .input-area {
-            padding: 20px 28px;
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
+
+        .typing .d:nth-child(2) { animation-delay: .2s; }
+        .typing .d:nth-child(3) { animation-delay: .4s; }
+
+        @keyframes blink {
+            0%, 80%, 100% { opacity: .2; }
+            40% { opacity: 1; }
+        }
+
+        .typing span { font-size: 12px; color: var(--text-faint); margin-left: 4px; }
+
+        /* ── INPUT ───────────────────────────── */
+        .compose {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
             display: flex;
-            gap: 12px;
-            background: rgba(17, 24, 39, 0.5);
-            backdrop-filter: blur(10px);
+            gap: 10px;
+            background: var(--surface);
         }
-        .input-area input {
+
+        .compose input {
             flex: 1;
-            padding: 14px 18px;
-            background: rgba(15, 23, 42, 0.8);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 12px;
-            color: #e2e8f0;
+            padding: 10px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font: inherit;
             font-size: 14px;
-            font-family: inherit;
-            transition: all 0.2s;
         }
-        .input-area input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); }
-        .input-area input::placeholder { color: #4b5563; }
-        .input-area button {
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #4f46e5, #6366f1);
+
+        .compose input:focus { outline: none; border-color: var(--accent); }
+        .compose input::placeholder { color: var(--text-faint); }
+
+        .compose button {
+            padding: 10px 22px;
+            background: var(--accent);
             border: none;
-            border-radius: 12px;
+            border-radius: 6px;
             color: #fff;
+            font: inherit;
             font-size: 14px;
-            cursor: pointer;
             font-weight: 600;
-            font-family: inherit;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+            cursor: pointer;
+            transition: background .15s;
         }
-        .input-area button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35); }
-        .input-area button:active { transform: translateY(0); }
-        .input-area button:disabled { background: #334155; cursor: not-allowed; box-shadow: none; transform: none; }
-        /* Welcome */
+
+        .compose button:hover { background: #0f766e; }
+        .compose button:disabled { background: var(--raised); color: var(--text-faint); cursor: not-allowed; }
+
+        /* ── WELCOME ─────────────────────────── */
         .welcome {
             text-align: center;
-            padding: 80px 24px 40px;
-            color: #64748b;
+            padding: 56px 20px 28px;
         }
-        .welcome-icon {
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
+
+        .welcome h2 { font-size: 20px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+
+        .welcome p {
+            font-size: 14px;
+            color: var(--text-dim);
+            max-width: 400px;
+            margin: 0 auto 24px;
+            line-height: 1.55;
+        }
+
+        .chips {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
             justify-content: center;
-            font-size: 32px;
+            max-width: 540px;
+            margin: 0 auto;
         }
-        .welcome h2 { font-size: 22px; color: #f1f5f9; margin-bottom: 10px; font-weight: 600; letter-spacing: -0.3px; }
-        .welcome p { font-size: 14px; margin-bottom: 32px; color: #94a3b8; max-width: 440px; margin-left: auto; margin-right: auto; }
-        .suggestions { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; max-width: 600px; margin: 0 auto; }
-        .suggestion {
-            padding: 12px 16px;
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 12px;
+
+        .chip {
+            padding: 8px 14px;
+            background: var(--raised);
+            border: 1px solid var(--border);
+            border-radius: 6px;
             font-size: 13px;
             cursor: pointer;
-            color: #cbd5e1;
-            text-align: left;
-            transition: all 0.2s;
-            line-height: 1.4;
+            color: var(--text-dim);
+            transition: .15s;
         }
-        .suggestion:hover { border-color: #6366f1; color: #a5b4fc; background: rgba(99, 102, 241, 0.08); transform: translateY(-2px); }
-        .suggestion::before { content: '→ '; color: #6366f1; font-weight: 600; }
-        /* Responsive */
+
+        .chip:hover {
+            border-color: var(--accent);
+            color: var(--accent-lit);
+            background: var(--accent-bg);
+        }
+
+        /* ── RESPONSIVE ──────────────────────── */
         @media (max-width: 768px) {
             .sidebar { display: none; }
-            .message { max-width: 90%; }
-            .suggestions { grid-template-columns: 1fr; }
+            .msg { max-width: 92%; }
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <div class="sidebar-brand">
-            <div class="logo">📊</div>
-            <span>CS Data Analyst</span>
+        <div class="sidebar-top">
+            <div class="logo-mark">CS</div>
+            <span>Data Analyst</span>
         </div>
 
-        <div>
-            <h2>Session</h2>
-            <label for="sessionId">Session ID</label>
-            <input type="text" id="sessionId" value="default" />
-            <label for="userId">User ID</label>
-            <input type="text" id="userId" value="default" />
-        </div>
+        <div class="sidebar-body">
+            <div class="field">
+                <label>Session ID</label>
+                <input type="text" id="sessionId" value="default" />
+            </div>
+            <div class="field">
+                <label>User ID</label>
+                <input type="text" id="userId" value="default" />
+            </div>
 
-        <button class="profile-btn" onclick="showProfile()">
-            <span>📝</span> Show My Profile
-        </button>
+            <button class="btn-outline" onclick="showProfile()">Show my profile</button>
 
-        <div class="sidebar-info">
-            <strong>About</strong><br>
-            Intelligent agent that analyzes the <strong>Bitext Customer Service</strong> dataset with 11 categories and 27 intents.
-            <br><br>
-            <strong>Powered by:</strong><br>
-            LangGraph ReAct · Nebius AI Studio · AWS Lambda
+            <div class="sidebar-info">
+                <b>About</b><br>
+                Analyzes the Bitext Customer Service dataset &mdash; 11 categories, 27 intents.<br><br>
+                <b>Stack</b><br>
+                LangGraph ReAct &middot; Nebius AI Studio &middot; AWS Lambda
+            </div>
         </div>
 
         <div class="sidebar-footer">
-            <div class="credits">
-                Built by <strong>Rotem Levi</strong> & <strong>Yaniv Maymon</strong>
-            </div>
-            <div class="links">
-                <a href="https://www.linkedin.com/in/052rotemlevi/" target="_blank">🔗 Rotem LinkedIn</a>
-                <a href="https://www.linkedin.com/in/%E2%80%AAyaniv-maimon%E2%80%AC%E2%80%8F-200969184/" target="_blank">🔗 Yaniv LinkedIn</a>
-            </div>
-            <div class="links" style="margin-top:8px">
-                <a href="https://github.com/052rotemlevi/Customer-Service-Data-Analyst-Agent" target="_blank">⭐ GitHub Repository</a>
-            </div>
+            Built by
+            <a href="__AUTHOR1_LINKEDIN__" target="_blank" rel="noopener">__AUTHOR1_NAME__</a>
+            <span class="sep">&amp;</span>
+            <a href="__AUTHOR2_LINKEDIN__" target="_blank" rel="noopener">__AUTHOR2_NAME__</a>
+            <a class="repo-link" href="__GITHUB_REPO__" target="_blank" rel="noopener">View on GitHub</a>
         </div>
     </div>
 
     <div class="main">
-        <div class="header">
-            <div class="icon">🤖</div>
-            <h1>Customer Service Data Analyst</h1>
-            <span class="badge">Online</span>
+        <div class="toolbar">
+            <div class="online-dot"></div>
+            <h2>Customer Service Data Analyst</h2>
+            <span class="tag">Online</span>
         </div>
 
         <div class="messages" id="messages">
             <div class="welcome" id="welcome">
-                <div class="welcome-icon">📊</div>
-                <h2>Welcome! Ask me anything about the dataset.</h2>
-                <p>I can analyze categories, intents, show examples, distributions, and provide intelligent summaries from customer service data.</p>
-                <div class="suggestions">
-                    <div class="suggestion" onclick="sendSuggestion(this)">What categories exist in the dataset?</div>
-                    <div class="suggestion" onclick="sendSuggestion(this)">How many refund requests did we get?</div>
-                    <div class="suggestion" onclick="sendSuggestion(this)">Summarize the FEEDBACK category</div>
-                    <div class="suggestion" onclick="sendSuggestion(this)">Show me 3 examples from SHIPPING</div>
-                    <div class="suggestion" onclick="sendSuggestion(this)">Distribution of intents in ACCOUNT</div>
-                    <div class="suggestion" onclick="sendSuggestion(this)">What are the top issues customers face?</div>
+                <h2>What would you like to know?</h2>
+                <p>Ask about categories, intents, distributions, examples, or anything else in the customer service dataset.</p>
+                <div class="chips">
+                    <div class="chip" onclick="sendSuggestion(this)">What categories exist?</div>
+                    <div class="chip" onclick="sendSuggestion(this)">How many refund requests?</div>
+                    <div class="chip" onclick="sendSuggestion(this)">Summarize the FEEDBACK category</div>
+                    <div class="chip" onclick="sendSuggestion(this)">3 examples from SHIPPING</div>
+                    <div class="chip" onclick="sendSuggestion(this)">Intent distribution in ACCOUNT</div>
+                    <div class="chip" onclick="sendSuggestion(this)">Top customer issues</div>
                 </div>
             </div>
             <div class="typing" id="typing">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <span>&nbsp;Thinking...</span>
+                <div class="d"></div><div class="d"></div><div class="d"></div>
+                <span>Thinking&hellip;</span>
             </div>
         </div>
 
-        <div class="input-area">
-            <input type="text" id="queryInput" placeholder="Ask about the customer service dataset..."
+        <div class="compose">
+            <input type="text" id="queryInput" placeholder="Ask something&hellip;"
                    onkeydown="if(event.key==='Enter')sendQuery()" />
             <button id="sendBtn" onclick="sendQuery()">Send</button>
         </div>
     </div>
 
     <script>
-        const API_BASE = window.location.origin + '/api';
-
-        function getSessionId() { return document.getElementById('sessionId').value || 'default'; }
-        function getUserId() { return document.getElementById('userId').value || 'default'; }
+        const API = location.origin + '/api';
+        const $ = id => document.getElementById(id);
 
         function addMessage(role, text, reasoning) {
-            const welcome = document.getElementById('welcome');
-            if (welcome) welcome.remove();
+            const w = $('welcome');
+            if (w) w.remove();
 
-            const container = document.getElementById('messages');
-            const div = document.createElement('div');
-            div.className = `message ${role}`;
-            div.textContent = text;
+            const wrap = $('messages');
+            const el = document.createElement('div');
+            el.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+            el.textContent = text;
 
-            if (reasoning && reasoning.length > 0) {
+            if (reasoning && reasoning.length) {
                 const toggle = document.createElement('div');
                 toggle.className = 'reasoning-toggle';
-                toggle.textContent = '🔍 Show reasoning steps';
-                const content = document.createElement('div');
-                content.className = 'reasoning-content';
-                reasoning.forEach(step => {
-                    const s = document.createElement('div');
-                    s.className = 'step ' + (step.type === 'tool_call' ? 'tool' : step.type === 'tool_result' ? 'result' : 'route');
-                    if (step.type === 'tool_call') {
-                        s.textContent = `🔧 ${step.tool}(${JSON.stringify(step.args)})`;
-                    } else if (step.type === 'tool_result') {
-                        s.textContent = `📋 ${step.content.substring(0, 200)}`;
+                toggle.textContent = 'Show reasoning';
+
+                const box = document.createElement('div');
+                box.className = 'reasoning-content';
+
+                reasoning.forEach(function(s) {
+                    var d = document.createElement('div');
+                    d.className = 'step ' + (s.type === 'tool_call' ? 'tool' : s.type === 'tool_result' ? 'result' : 'route');
+                    if (s.type === 'tool_call') {
+                        d.textContent = s.tool + '(' + JSON.stringify(s.args) + ')';
+                    } else if (s.type === 'tool_result') {
+                        d.textContent = s.content.substring(0, 200);
                     }
-                    content.appendChild(s);
+                    box.appendChild(d);
                 });
-                toggle.onclick = () => {
-                    content.classList.toggle('open');
-                    toggle.textContent = content.classList.contains('open') ? '🔍 Hide reasoning steps' : '🔍 Show reasoning steps';
+
+                toggle.onclick = function() {
+                    box.classList.toggle('open');
+                    toggle.textContent = box.classList.contains('open') ? 'Hide reasoning' : 'Show reasoning';
                 };
-                div.appendChild(toggle);
-                div.appendChild(content);
+
+                el.appendChild(toggle);
+                el.appendChild(box);
             }
 
-            const typing = document.getElementById('typing');
-            container.insertBefore(div, typing);
-            container.scrollTop = container.scrollHeight;
+            wrap.insertBefore(el, $('typing'));
+            wrap.scrollTop = wrap.scrollHeight;
         }
 
         async function sendQuery() {
-            const input = document.getElementById('queryInput');
-            const btn = document.getElementById('sendBtn');
-            const query = input.value.trim();
-            if (!query) return;
+            var inp = $('queryInput'), btn = $('sendBtn');
+            var q = inp.value.trim();
+            if (!q) return;
 
-            input.value = '';
+            inp.value = '';
             btn.disabled = true;
-            addMessage('user', query);
-
-            document.getElementById('typing').classList.add('visible');
+            addMessage('user', q);
+            $('typing').classList.add('visible');
 
             try {
-                const res = await fetch(`${API_BASE}/chat`, {
+                var r = await fetch(API + '/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        query: query,
-                        session_id: getSessionId(),
-                        user_id: getUserId(),
-                    }),
+                        query: q,
+                        session_id: $('sessionId').value || 'default',
+                        user_id: $('userId').value || 'default'
+                    })
                 });
-                const data = await res.json();
-                if (data.error) {
-                    addMessage('assistant', '❌ Error: ' + data.error);
-                } else {
-                    addMessage('assistant', data.answer, data.reasoning_steps);
-                }
-            } catch (err) {
-                addMessage('assistant', '❌ Connection error. Please try again.');
+                var d = await r.json();
+                addMessage('assistant', d.error ? 'Error: ' + d.error : d.answer, d.reasoning_steps);
+            } catch (e) {
+                addMessage('assistant', 'Connection error — please try again.');
             }
 
-            document.getElementById('typing').classList.remove('visible');
+            $('typing').classList.remove('visible');
             btn.disabled = false;
-            input.focus();
+            inp.focus();
         }
 
         function sendSuggestion(el) {
-            document.getElementById('queryInput').value = el.textContent;
+            $('queryInput').value = el.textContent;
             sendQuery();
         }
 
-        async function showProfile() {
-            document.getElementById('queryInput').value = 'What do you remember about me?';
+        function showProfile() {
+            $('queryInput').value = 'What do you remember about me?';
             sendQuery();
         }
     </script>
