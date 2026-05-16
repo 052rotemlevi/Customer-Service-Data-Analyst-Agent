@@ -1,8 +1,11 @@
 """Configuration and LLM setup for the agent."""
 
 import os
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 
+# Load .env file if present (for local development)
+load_dotenv()
 
 # Nebius Token Factory API configuration
 NEBIUS_API_KEY = os.environ.get("NEBIUS_API_KEY", "")

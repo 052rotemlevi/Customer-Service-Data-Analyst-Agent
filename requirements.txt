@@ -6,3 +6,4 @@ datasets>=4.0
 pydantic>=2.10
 fastmcp>=3.3
 streamlit>=1.45
+python-dotenv>=1.0
