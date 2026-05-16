@@ -15,7 +15,7 @@ Parameters:
 
   DomainName:
     Type: String
-    Default: CS-Agent.demo.Rotem.click
+    Default: cs-agent.demo.rotem.click
     Description: Custom domain for the app
 
   HostedZoneId:

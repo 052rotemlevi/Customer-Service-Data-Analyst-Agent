@@ -27,7 +27,7 @@
 param(
     [string]$StackName = "cs-agent",
     [string]$Region = "us-east-1",
-    [string]$DomainName = "CS-Agent.demo.Rotem.click",
+    [string]$DomainName = "cs-agent.demo.rotem.click",
     [Parameter(Mandatory=$true)]
     [string]$HostedZoneId
 )
