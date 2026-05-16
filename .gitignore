@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.env
+.env.local
+venv/
+.venv/
+conversations.db
+data/bitext_customer_service.csv
+profiles/*.json
+*.egg-info/
+dist/
+build/
+.idea/
+.vscode/
+test_agent.py
+*.db
