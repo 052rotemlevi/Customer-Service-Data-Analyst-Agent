@@ -1,4 +1,7 @@
-"""User profile management — persistent per-user profiles stored as JSON files."""
+"""User profile management — persistent per-user profiles.
+
+Uses local JSON files by default, DynamoDB on AWS Lambda.
+"""
 
 import os
 import json
@@ -9,18 +12,26 @@ from agent.config import get_llm
 
 
 _PROFILES_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "profiles")
+_DEPLOYMENT_MODE = os.environ.get("DEPLOYMENT_MODE", "local")
+
+
+def _get_dynamo_table():
+    """Get DynamoDB profiles table resource."""
+    import boto3
+    table_name = os.environ.get("PROFILES_TABLE", "agent-profiles")
+    dynamodb = boto3.resource("dynamodb")
+    return dynamodb.Table(table_name)
 
 
 def _profile_path(user_id: str) -> str:
     """Get the file path for a user's profile."""
     os.makedirs(_PROFILES_DIR, exist_ok=True)
-    # Sanitize user_id for filesystem safety
     safe_id = "".join(c if c.isalnum() or c in "-_" else "_" for c in user_id)
     return os.path.join(_PROFILES_DIR, f"{safe_id}.json")
 
 
 def load_profile(user_id: str) -> dict:
-    """Load a user's profile from disk.
+    """Load a user's profile.
 
     Args:
         user_id: Unique user identifier.
@@ -28,20 +39,43 @@ def load_profile(user_id: str) -> dict:
     Returns:
         Profile dictionary with keys like 'name', 'interests', 'preferences'.
     """
+    default = {"user_id": user_id, "name": None, "facts": [], "interests": [], "preferences": []}
+
+    if _DEPLOYMENT_MODE == "aws_lambda":
+        try:
+            table = _get_dynamo_table()
+            response = table.get_item(Key={"user_id": user_id})
+            item = response.get("Item")
+            if item and "profile_data" in item:
+                return json.loads(item["profile_data"])
+        except Exception:
+            pass
+        return default
+
+    # Local mode — JSON files
     path = _profile_path(user_id)
     if os.path.exists(path):
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
-    return {"user_id": user_id, "name": None, "facts": [], "interests": [], "preferences": []}
+    return default
 
 
 def save_profile(user_id: str, profile: dict) -> None:
-    """Save a user's profile to disk.
+    """Save a user's profile.
 
     Args:
         user_id: Unique user identifier.
         profile: Profile dictionary to persist.
     """
+    if _DEPLOYMENT_MODE == "aws_lambda":
+        try:
+            table = _get_dynamo_table()
+            table.put_item(Item={"user_id": user_id, "profile_data": json.dumps(profile)})
+        except Exception:
+            pass
+        return
+
+    # Local mode — JSON files
     path = _profile_path(user_id)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(profile, f, indent=2, ensure_ascii=False)

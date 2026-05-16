@@ -1,0 +1,8 @@
+# AWS Lambda layer dependencies
+langchain-openai>=1.2
+langgraph>=1.2
+pandas>=2.2
+datasets>=4.0
+pydantic>=2.10
+python-dotenv>=1.0
+boto3>=1.34
