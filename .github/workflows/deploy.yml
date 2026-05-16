@@ -36,7 +36,7 @@ jobs:
           cp requirements-lambda.txt requirements.txt
 
       - name: SAM Build
-        run: sam build --template-file template.yaml --use-container
+        run: sam build --template-file template.yaml
 
       - name: Restore full requirements
         run: cp requirements-full.txt requirements.txt

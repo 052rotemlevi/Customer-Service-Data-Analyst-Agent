@@ -1,7 +1,9 @@
 # Lambda-only dependencies (no datasets/streamlit/fastmcp/sqlite-checkpoint)
 langchain-openai>=1.2
 langgraph>=1.2
-pandas>=2.2
+pandas>=2.2,<2.3
+numpy>=1.26,<2.0
 pydantic>=2.10
 python-dotenv>=1.0
 boto3>=1.35
+tiktoken>=0.7,<0.9
