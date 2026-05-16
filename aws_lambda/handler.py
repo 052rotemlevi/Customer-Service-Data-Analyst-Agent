@@ -43,15 +43,15 @@ def lambda_handler(event: dict, context: Any) -> dict:
         return {"statusCode": 200, "headers": headers, "body": ""}
 
     # Health check
-    if path == "/health" or http_method == "GET":
+    if path in ("/health", "/api/health") or (http_method == "GET" and "/chat" not in path):
         return {
             "statusCode": 200,
             "headers": headers,
             "body": json.dumps({"status": "healthy", "service": "Customer Service Data Analyst Agent"}),
         }
 
-    # POST /chat
-    if http_method == "POST" and "/chat" in path:
+    # POST /chat (or /api/chat via CloudFront)
+    if http_method == "POST" and ("chat" in path):
         try:
             body = json.loads(event.get("body", "{}"))
             query = body.get("query", "").strip()

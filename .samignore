@@ -1,0 +1,26 @@
+# SAM build exclusions — keep the package small
+venv/
+.venv/
+.git/
+.github/
+frontend/
+profiles/
+.env
+.env.local
+*.db
+conversations.db
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
+.idea/
+.vscode/
+test_agent.py
+deploy.ps1
+template.yaml
+samconfig.toml
+README.md
+Assignment 3.md
+app.py
+mcp_server.py
