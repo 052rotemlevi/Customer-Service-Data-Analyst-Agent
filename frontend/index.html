@@ -113,12 +113,26 @@
         .sidebar-footer .credits {
             font-size: 11px;
             color: #64748b;
-            line-height: 1.6;
+            line-height: 1.8;
         }
         .sidebar-footer .credits strong {
             color: #94a3b8;
             font-weight: 500;
         }
+        .sidebar-footer .links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .sidebar-footer .links a {
+            font-size: 11px;
+            color: #818cf8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .sidebar-footer .links a:hover { color: #a5b4fc; text-decoration: underline; }
         /* Main area */
         .main {
             flex: 1;
@@ -369,6 +383,13 @@
         <div class="sidebar-footer">
             <div class="credits">
                 Built by <strong>Rotem Levi</strong> & <strong>Yaniv Maymon</strong>
+            </div>
+            <div class="links">
+                <a href="https://www.linkedin.com/in/052rotemlevi/" target="_blank">🔗 Rotem LinkedIn</a>
+                <a href="https://www.linkedin.com/in/%E2%80%AAyaniv-maimon%E2%80%AC%E2%80%8F-200969184/" target="_blank">🔗 Yaniv LinkedIn</a>
+            </div>
+            <div class="links" style="margin-top:8px">
+                <a href="https://github.com/052rotemlevi/Customer-Service-Data-Analyst-Agent" target="_blank">⭐ GitHub Repository</a>
             </div>
         </div>
     </div>
